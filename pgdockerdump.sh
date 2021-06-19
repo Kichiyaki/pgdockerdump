@@ -2,12 +2,12 @@
 
 connectionString=$1
 
-downloadBackup() {
+downloadDump() {
   containerName=$1
   user=$2
   dbName=$3
   if [ -z "$containerName" ] || [ -z "$user" ] || [ -z "$dbName" ]; then
-    echo "downloadBackup error: not enough arguments passed to this function"
+    echo "downloadDump error: not enough arguments passed to this function"
     return
   fi
   filename="$dbName-$(date +%s).dump"
@@ -16,11 +16,11 @@ downloadBackup() {
   rm -rf "$filename"
 }
 
-deleteOldBackups() {
+deleteOldDumps() {
   dbName=$1
   sub=$2
   if [ -z "$dbName" ] || [ -z "$sub" ]; then
-    echo "deleteOldBackups error: not enough arguments passed to this function"
+    echo "deleteOldDumps error: not enough arguments passed to this function"
     return
   fi
   files=($(ls *.dump.zip))
